@@ -1,6 +1,6 @@
 {
   "name": "eyweb-plugins-less",
-  "version": "1.0.9-alpha.0",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
