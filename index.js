@@ -1,5 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 module.exports = {
     configureWebpack: config => {
         config.module.rules.delete('less')
@@ -41,6 +43,17 @@ module.exports = {
             .use('less')
             .loader('less-loader')
             .end()
+
+        config.plugin('MiniCssExtractPlugin')
+            .use(MiniCssExtractPlugin, [{
+                filename: "[name].[contenthash:8].css",
+                chunkFilename: "[name].[contenthash:8].css"
+            }]).end()
+        .plugin('OptimizeCssAssetsPlugin')
+            .use(OptimizeCssAssetsPlugin, [{ 
+                cssProcessorOptions: { 
+                parser: safePostCssParser
+            }}]).end()
 
 
         console.log('========')
